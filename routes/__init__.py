@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from routes import auth, product
+from routes import product, user
 
 routes = APIRouter()
 
-routes.include_router(auth.routes)
+routes.include_router(user.routes)
 routes.include_router(product.routes)

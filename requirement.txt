@@ -1,3 +1,6 @@
 fastapi
 uvicorn
-pandatic
+motor
+autopep8
+python-jose
+passlib
