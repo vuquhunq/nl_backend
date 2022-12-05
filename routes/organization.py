@@ -8,21 +8,23 @@ from model.domain import users
 from model.schemas import organization
 from utils.jwt import get_current_user
 
-route = APIRouter(tags=['Organization'], prefix='/organization')
+route = APIRouter(tags=['Organization'], prefix='/organizations')
+
 
 @route.get('/get-organization', response_model=List[organization.ResposneOrganization])
 async def get_current_organization(user: str = Depends(get_current_user)):
-  result = await get_organization(user.username)
-  if result: 
-    return result
-  raise HTTPException(200, 'Bad Request')
+    result = await get_organization(user.username)
+    if result:
+        return result
+    raise HTTPException(400, 'Bad Request')
+
 
 @route.post('/create-organization')
 async def create_organization(_organization: organization.RequestCreateOrganization, user: users.UsernameModel = Depends(get_current_user)):
-  _organization.owner = user.username
-  _organization = jsonable_encoder(_organization)
+    _organization.owner = user.username
+    _organization = jsonable_encoder(_organization)
 
-  result = await create_organization_db(_organization)
-  if result:
-    return 'Success'
-  raise HTTPException(200, 'Bad Request')
+    result = await create_organization_db(_organization)
+    if result:
+        return 'Success'
+    raise HTTPException(400, 'Bad Request')
