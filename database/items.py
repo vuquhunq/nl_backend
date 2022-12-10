@@ -11,7 +11,7 @@ async def get_items_by_org(org: str):
     if result:
         return result
     else:
-        raise HTTPException(400, 'Org is empty')
+        raise HTTPException(400, 'Không có dữ liệu')
 
 
 async def create_items(items: dict):

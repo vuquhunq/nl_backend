@@ -34,7 +34,7 @@ async def get_user(username: str):
     if result:
         return PasswordModel(Password=result)
     else:
-        raise HTTPException(400, 'Account is not exist')
+        raise HTTPException(400, 'Không tìm thấy người dùng')
 
 
 async def authenticate_user(user=SignInRequest):

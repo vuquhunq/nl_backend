@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 from database.organization import get_organization
 from database.users import create_user
@@ -13,6 +14,8 @@ route = APIRouter(tags=['Authentication'], prefix='/auth')
 
 @route.post('/sign-in')
 async def sign_in(user: auth.SignInRequest):
+    check_empty_input(user)
+    user.username = user.username.lower()
     user = await authenticate_user(user)
     if not user:
         raise HTTPException(
@@ -25,14 +28,20 @@ async def sign_in(user: auth.SignInRequest):
         data={"sub": user.username}, expires_delta=access_token_expires)
     return access_token
 
+def check_empty_input(user: auth.SignInRequest):
+    if user.username == '' and user.password == '':
+        raise HTTPException(400, 'Chưa điền thông tin đăng nhập')
+    if user.username == '':
+        raise HTTPException(400, 'Tên đăng nhâp không được để trống')
+    if user.password == '':
+            raise HTTPException(400, 'Mật khẩu không được để trống')
 
 @route.post('/sign-up')
 async def sign_up(user: auth.SignUpRequest):
+    user.username =user.username.islower()
     user.password = get_password_hash(user.password)
     user = jsonable_encoder(user)
     print(user)
     result = await create_user(user)
     if result:
-        return 'Success'
-    else:
-        raise HTTPException(400, 'Bad Request')
+        JSONResponse('T')
