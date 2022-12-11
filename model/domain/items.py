@@ -4,7 +4,7 @@ from model.domain import IDModel
 
 
 class ItemsNameModel(BaseModel):
-    item_name: str = Field(None, alias='ItemName')
+    item_name: str = Field('', alias='ItemName')
 
 
 class OrganizationIDMOdel(BaseModel):
@@ -13,12 +13,18 @@ class OrganizationIDMOdel(BaseModel):
 
 
 class SKUCodeModel(BaseModel):
-    sku_code: str = Field(None, alias="SKUCode")
+    sku_code: str = Field('', alias="SKUCode")
 
 
 class InventoryTypeMode(BaseModel):
-    inventory_type: str = Field(None, alias='InventoryType')
+    inventory_type: str = Field('', alias='InventoryType')
 
 
 class SellPriceModel(BaseModel):
-    sell_price: float = Field(None, alias='SellPrice')
+    sell_price: float = Field('', alias='SellPrice')
+
+
+class BarcodeModel(BaseModel):
+    SKU: str = Field('', alias='SKU')
+    UPC: str = Field('', alias='UPC')
+    EAN: str = Field('', alias='EAN')

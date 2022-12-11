@@ -28,20 +28,19 @@ async def sign_in(user: auth.SignInRequest):
         data={"sub": user.username}, expires_delta=access_token_expires)
     return access_token
 
+
 def check_empty_input(user: auth.SignInRequest):
     if user.username == '' and user.password == '':
         raise HTTPException(400, 'Chưa điền thông tin đăng nhập')
     if user.username == '':
         raise HTTPException(400, 'Tên đăng nhâp không được để trống')
     if user.password == '':
-            raise HTTPException(400, 'Mật khẩu không được để trống')
+        raise HTTPException(400, 'Mật khẩu không được để trống')
+
 
 @route.post('/sign-up')
 async def sign_up(user: auth.SignUpRequest):
-    user.username =user.username.islower()
+    user.username = user.username.lower()
     user.password = get_password_hash(user.password)
     user = jsonable_encoder(user)
-    print(user)
-    result = await create_user(user)
-    if result:
-        JSONResponse('T')
+    await create_user(user)

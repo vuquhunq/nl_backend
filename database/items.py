@@ -11,14 +11,14 @@ async def get_items_by_org(org: str):
     if result:
         return result
     else:
-        raise HTTPException(400, 'Không có dữ liệu')
+        return JSONResponse([])
 
 
 async def create_items(items: dict):
     result = await collection.insert_one(items)
     if result:
         return True
-    raise HTTPException(400, "Bad Request")
+    raise HTTPException(400, "Lỗi!, Kiểm tra thông tin nhập")
 
 
 async def delete_items(item_id: str):
@@ -26,5 +26,6 @@ async def delete_items(item_id: str):
     print(item_id)
     print(delete_result.deleted_count)
     if delete_result.deleted_count == 1:
-        return JSONResponse('Delete success', 200)
-    raise HTTPException(status_code=404, detail=f"Not found")
+        return JSONResponse('Xóa sản phẩm thành công', 200)
+    raise HTTPException(
+        status_code=404, detail=f"Không tìm thấy sản phẩm trong hệ thống")

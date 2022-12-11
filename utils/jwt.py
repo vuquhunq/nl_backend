@@ -40,7 +40,7 @@ async def get_user(username: str):
 async def authenticate_user(user=SignInRequest):
     users = await get_user(user.username)
     if not verify_password(user.password, users.password):
-        raise HTTPException(400, 'Wrong username or password')
+        raise HTTPException(400, 'Sai thông tin đăng nhập')
     return user
 
 

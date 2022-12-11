@@ -1,7 +1,7 @@
 from model.domain import files, items
 
 
-class RequestCreateItem(items.IDModel, items.ItemsNameModel, items.OrganizationIDMOdel, files.UrlImageModel, items.SKUCodeModel, items.InventoryTypeMode, items.SellPriceModel):
+class RequestCreateItem(items.IDModel, items.ItemsNameModel, items.OrganizationIDMOdel, files.UrlImageModel, items.SKUCodeModel, items.InventoryTypeMode, items.SellPriceModel, items.BarcodeModel):
     pass
 
 

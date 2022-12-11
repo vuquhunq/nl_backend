@@ -17,7 +17,7 @@ async def get_items(orgs: OrganizationIDMOdel):
     res = await get_items_by_org(orgs.organization_id)
     if res:
         return res
-    raise HTTPException(404, 'Items not found')
+    return JSONResponse([])
 
 
 @route.post('/create-item')
@@ -25,8 +25,7 @@ async def create_item(item: items.RequestCreateItem):
     item = jsonable_encoder(item)
     resposne = await create_items(item)
     if resposne:
-        return JSONResponse('Create items success', 201)
-    raise HTTPException(400, 'Bad Request')
+        return JSONResponse('Tạo sản phẩm thành công', 201)
 
 
 @route.delete('/delete-item/')
