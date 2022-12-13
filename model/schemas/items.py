@@ -1,9 +1,9 @@
-from model.domain import files, items
+from model.domain import files, items, storage
 
 
-class RequestCreateItem(items.IDModel, items.ItemsNameModel, items.OrganizationIDMOdel, files.UrlImageModel, items.SKUCodeModel, items.InventoryTypeMode, items.SellPriceModel, items.BarcodeModel):
+class RequestCreateItem(items.IDModel, items.ItemsNameModel, items.OrganizationIDMOdel, files.UrlImageModel, items.SKUCodeModel, items.InventoryTypeMode, items.SellPriceModel):
     pass
 
 
-class ResponseBasicInfoItems(items.IDModel, items.ItemsNameModel, files.UrlImageModel, items.SKUCodeModel, items.InventoryTypeMode, items.SellPriceModel):
+class ResponseBasicInfoItems(items.IDModel, items.ItemsNameModel, files.UrlImageModel, items.SKUCodeModel, items.InventoryTypeMode, items.SellPriceModel ):
     pass

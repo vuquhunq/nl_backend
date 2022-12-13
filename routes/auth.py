@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
@@ -6,8 +6,8 @@ from database.organization import get_organization
 from database.users import create_user
 from model.schemas import auth
 from utils.jwt import (ACCESS_TOKEN_EXPIRE_MINUTES, authenticate_user,
-                       create_access_token, get_password_hash, status,
-                       timedelta)
+                       create_access_token, get_current_user,
+                       get_password_hash, status, timedelta)
 
 route = APIRouter(tags=['Authentication'], prefix='/auth')
 
@@ -44,3 +44,7 @@ async def sign_up(user: auth.SignUpRequest):
     user.password = get_password_hash(user.password)
     user = jsonable_encoder(user)
     await create_user(user)
+
+@route.get('/get-profile/', response_model=auth.ProfileResponse)
+async def _get__profile_user(user: str = Depends(get_current_user) ):
+    return user

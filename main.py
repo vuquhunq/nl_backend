@@ -6,9 +6,8 @@ from routes import routes
 
 app = FastAPI()
 
-app = FastAPI()
-
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
 origins = ['*']
 
 app.add_middleware(

@@ -11,12 +11,10 @@ async def get_user_by_username(username: str):
         return user['Password']
     else:
         return False
-
-
+        
 async def create_user(user: dict):
     result = await get_user_by_username(user['Username'])
     if result:
         raise HTTPException(400, 'Tài khoản đã tồn tại')
     res = await collection.insert_one(user)
-    if res:
-        return JSONResponse('Tạo tài khoản thành công', status_code=201)
+    return JSONResponse("Tạo tài khoản thành công")

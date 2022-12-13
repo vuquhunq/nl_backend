@@ -11,3 +11,7 @@ route = APIRouter(tags=['Employee'], prefix='/employee')
 @route.post('/get-employee')
 async def get_items(orgs: OrganizationIDMOdel):
     return JSONResponse('Hello world', 200)
+
+@route.post('/create-employee')
+async def _create_employee():
+    pass

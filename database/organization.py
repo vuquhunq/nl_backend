@@ -6,7 +6,7 @@ collection = database.organizations
 
 
 async def get_organization(username: str):
-    response = await collection.find({"Owner": username}).to_list(10)
+    response = await collection.find({"Owner": username}).to_list(1000)
     if response:
         return response
     return False

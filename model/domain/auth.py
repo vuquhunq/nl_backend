@@ -9,6 +9,7 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
+    id: Union[str, None] = None
     username: Union[str, None] = None
 
 class PasswordModel(BaseModel):
