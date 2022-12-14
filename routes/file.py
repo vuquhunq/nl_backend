@@ -10,15 +10,15 @@ routes = APIRouter(tags=['File'], prefix='/file')
 
 @routes.post('/files')
 async def create_file(file: bytes = File()):
-  return {'file_size': len(file)}
+    return {'file_size': len(file)}
 
 
 @routes.post('/upload-file/')
 def upload_file(file: UploadFile = File(), user: TokenData = Depends(get_current_user)):
-  try:
-    content = file.file.read()
-    with open('static/'+ uuid.uuid1, 'wb') as f:
-      f.write(content)
-  except Exception:
-    file.file.close()
-  return {'filename': file.filename}
+    try:
+        content = file.file.read()
+        with open('static/' + file.filename, 'wb') as f:
+            f.write(content)
+    except Exception:
+        file.file.close()
+    return {'filename': file.filename}

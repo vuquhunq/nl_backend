@@ -7,7 +7,7 @@ collection = database.items
 
 
 async def get_items_by_org(org: str):
-    result = await collection.find({"OrganizationID": org}).to_list(10)
+    result = await collection.find({"OrganizationID": org}).to_list(1000)
     if result:
         return result
     else:
@@ -23,8 +23,6 @@ async def create_items(items: dict):
 
 async def delete_items(item_id: str):
     delete_result = await collection.delete_one({"_id": item_id})
-    print(item_id)
-    print(delete_result.deleted_count)
     if delete_result.deleted_count == 1:
         return JSONResponse('Xóa sản phẩm thành công', 200)
     raise HTTPException(

@@ -16,15 +16,9 @@ class SKUCodeModel(BaseModel):
     sku_code: str = Field('', alias="SKUCode")
 
 
-class InventoryTypeMode(BaseModel):
-    inventory_type: str = Field('', alias='InventoryType')
-
-
 class SellPriceModel(BaseModel):
-    sell_price: float = Field('', alias='SellPrice')
+    sell_price: float = Field(None, alias='SellPrice')
 
 
-class BarcodeModel(BaseModel):
-    SKU: str = Field('', alias='SKU')
-    UPC: str = Field('', alias='UPC')
-    EAN: str = Field('', alias='EAN')
+class CostPriceMOdel(BaseModel):
+    cost_price: float = Field(None, alias='CostPrice')

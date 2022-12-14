@@ -12,7 +12,7 @@ from model.schemas import items
 route = APIRouter(tags=['Items'], prefix='/items')
 
 
-@route.post('/get_item', response_model=List[items.ResponseBasicInfoItems])
+@route.post('/get_item', response_model=List[items.RequestCreateItem])
 async def get_items(orgs: OrganizationIDMOdel):
     res = await get_items_by_org(orgs.organization_id)
     if res:
