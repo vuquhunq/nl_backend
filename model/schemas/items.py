@@ -5,5 +5,5 @@ class RequestCreateItem(items.IDModel, items.ItemsNameModel, items.OrganizationI
     pass
 
 
-class ResponseBasicInfoItems(items.IDModel, items.ItemsNameModel, files.UrlImageModel, items.SKUCodeModel, items.SellPriceModel):
+class ResponseBasicInfoItems(items.IDModel, items.ItemsNameModel, files.UrlImageModel, items.SKUCodeModel, items.SellPriceModel, storage.QuantiyModel):
     pass

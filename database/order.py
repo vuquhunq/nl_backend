@@ -20,3 +20,11 @@ async def get_order_by_org(org: str):
     return result
   else:
       return JSONResponse([])
+
+
+async def delete_items(item_id: str):
+    delete_result = await collection.delete_one({"_id": item_id})
+    if delete_result.deleted_count == 1:
+        return JSONResponse('Xóa đơn đặt hàng thành công', 200)
+    raise HTTPException(
+        status_code=404, detail=f"Không tìm thấy đơn đặt hàng trong hệ thống")

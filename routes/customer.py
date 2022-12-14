@@ -5,7 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 from database.customer import (check_customer_by_email, create_customer,
-                               get_all_customer_by_org)
+                               delele_customer, get_all_customer_by_org)
 from model.domain.items import OrganizationIDMOdel
 from model.schemas import customer
 from utils.jwt import get_current_user
@@ -28,3 +28,8 @@ async def create_customers(customer: customer.RequestCreateCustomerModel):
   customer = jsonable_encoder(customer)
   if await create_customer(customer):
     return JSONResponse('Tạo khách hàng thành công')
+
+@routes.delete('/delete-customer')
+async def delete_customers(id: str):
+  res = await delele_customer(id)
+  return res

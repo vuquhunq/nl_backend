@@ -22,3 +22,10 @@ async def check_customer_by_email(customer: str, org: str):
 
 async def create_customer(customer: dict):
   return await collection.insert_one(customer)
+
+async def delele_customer(customer: str):
+    delete_result = await collection.delete_one({"_id": customer})
+    if delete_result.deleted_count == 1:
+        return JSONResponse('Xóa nhân viên thành công', 200)
+    raise HTTPException(
+        status_code=404, detail=f"Không tìm thấy nhân viên trong hệ thống")
